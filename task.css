@@ -1,0 +1,138 @@
+@@ -0,0 +1,24 @@
+const caltemp = () => {
+    const numberTemp = document.getElementById('temp').value;
+    const tempselected = document.getElementById('temp_diff');
+    const valueTemp = temp_diff.options[tempselected.selectedIndex].value;
+    console.log(valueTemp);
+    const celToFah = (cel) => {
+        let fahrenheit = Math.round((cel * 9 / 5) + 32);
+        return fahrenheit;
+    }
+    const fahTocel = (fahren) => {
+        let celsius = Math.round((fahren - 32) * 5 / 9);
+        return celsius;
+    }
+    let result;
+
+    if (valueTemp == 'celsius') {
+        result = celToFah(numberTemp);
+        document.getElementById('resultcontainer').innerHTML = '=' + result + "°Fahrenheit";
+    }
+    else {
+        result = fahTocel(numberTemp);
+        document.getElementById('resultcontainer').innerHTML = "=" + result + "°celsius";
+    }
+}
+ 74  
+task3.css
+@@ -0,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+.container {
+    background-color: rgb(145, 195, 202);
+    height: 100vh;
+    width: 100vw;
+}
+
+.infocontainer {
+    height: 30vh;
+    width: 50vw;
+    background-color: rgb(230, 174, 215);
+    border-radius: 9px;
+    box-shadow: 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column
+}
+
+.mg {
+
+    margin-bottom: 18px;
+}
+
+.input {
+    margin-left: 100px;
+
+}
+
+.btn {
+    margin-top: 15px;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 3px;
+}
+
+.center {
+    text-align: center;
+}
+
+.mg-top {
+    margin-top: 10px;
+}
+
+input {
+    border-color: rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+}
+
+#temp_diff {
+    border-color: rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+}
+ 33  
+temp.html
+@@ -0,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature converter</title>
+    <link rel="stylesheet" href="task3.css">
+</head>
+<body>
+    <div class="container flex-row justify-center align-center">
+        <div class="infocontainer flex-col justify-center align-center">
+            <form class="form" action="" onsubmit="caltemp(); return false">
+                <h2 class="mg">Enter the temperature you would like to convert</h2>
+                <div class="input">
+                    <input type="number" class="number" name="temp" id="temp">
+                    <select name="temp" id="temp_diff">
+                        <option value="celsius">°Celsius</option>
+                        <option value="Fahrenheit">°Fahrenheit</option>
+                    </select>
+                </div>
+                <div class="center">
+                    <button class="btn" type="submit" name="temp">Submit</button>
+                </div>
+                <div class="center mg-top" id='resultcontainer'></div>
+            </form>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+
+</body>
+</html>
